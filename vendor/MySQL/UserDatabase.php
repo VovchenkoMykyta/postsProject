@@ -43,11 +43,21 @@ final class UserDatabase extends Database {
 
     }
 
+    static public function getUserList() {
+
+        $selectResult = static::select(self::$tableName);
+
+        if (!$selectResult) return [];
+
+        return $selectResult;
+
+    }
+
     static private function passwordVerify(string $password, string $repeat) {
         return [];
     }
 
-    static private function loginVerify(string $loginVerify) {
+    static private function loginVerify(string $login) {
         return [];
     }
 
