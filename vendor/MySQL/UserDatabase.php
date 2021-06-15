@@ -31,10 +31,16 @@ final class UserDatabase extends Database {
     }
     
     static private function passwordVerify (string $password, string $repeat) {
-      return [];
+        $passErrors = [];
+
+        if ($password !== $repeat){
+            $passErrors[] = "Your password and confirm do not match";
+        }
+        return $passErrors;
     }
   
     static private function loginVerify (string $loginVerify) {
+        $sql = static::select();
       return [];
     }
 
