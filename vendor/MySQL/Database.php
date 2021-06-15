@@ -50,7 +50,43 @@ class Database {
     
   }
   
-  static protected function update () {}
+    static public function update (
+          
+            string $tableName,
+            array $values,
+            string $conditions,
+            string $order = NULL,
+            int $limit = NULL
+  
+    ) {
+    
+      if (!self::$db) self::connect();
+      if (!self::$connectionStatus) return false;
+    
+      $query = "UPDATE `$tableName` SET ";
+    
+      foreach ($values as $fieldName => $fieldValue) {
+        $query .= "`$fieldName` = '$fieldValue', ";
+      }
+    
+      $query = substr($query, 0, -2);
+    
+      if ($conditions) $query .= " WHERE $conditions";
+      if ($order) $query .= " ORDER BY `$order`";
+      if ($limit) $query .= " LIMIT $limit";
+    
+      $query .= ";";
+    
+      self::$lastQuery = $query;
+    
+      $result = self::$db->query($query);
+    
+      self::$lastQueryStatus = $result;
+    
+      return $result;
+    
+    }
+  
   static protected function delete () {}
   static protected function select () {}
   
