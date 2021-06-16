@@ -130,25 +130,16 @@ abstract class Database {
      * @param string $fieldValue Value of the field to limit resuld. Can be used only with $fieldName.
      * @return array Result array with the specific record.
      */
-    static public function selectOne (string $tableName, string $fieldName = NULL, string $fieldValue = NULL) {
+    static public function selectOne (string $tableName, string $fieldName, string $fieldValue) {
 
         if (!self::$db) self::connect();
         if (!self::$connectionStatus) return [];
 
-        if ( ($fieldName && !$fieldValue) || (!$fieldName && $fieldValue) ) return [];
-
         $tableName = addslashes($tableName);
+        $fieldName = addslashes($fieldName);
+        $fieldValue = addslashes($fieldValue);
 
-        if ($fieldName && $fieldValue) {
-            $fieldName = addslashes($fieldName);
-            $fieldValue = addslashes($fieldValue);
-        }
-
-        $query = "SELECT * FROM `$tableName`";
-
-        if ($fieldName && $fieldValue) $query .= " WHERE `fieldName` = '$fieldValue' LIMIT 1";
-
-        $query .= ";";
+        $query = "SELECT * FROM `$tableName` WHERE `$fieldName` = '$fieldValue' LIMIT 1;";
 
         $result = self::$db->query($query);
 
@@ -158,8 +149,7 @@ abstract class Database {
             return [];
         }
 
-        if ($fieldName && $fieldValue) return $result[0];
-        return $result;
+        return $result[0];
 
     }
 
@@ -176,7 +166,7 @@ abstract class Database {
         if (!self::$connectionStatus) return [];
 
         $tableName = addslashes($tableName);
-        if ($orderField) $order = addslashes($orderField);
+        if ($orderField) $orderField = addslashes($orderField);
         if ($orderDirection) $orderDirection = addslashes($orderDirection);
 
         $query = "SELECT * FROM `$tableName`";
@@ -210,7 +200,15 @@ abstract class Database {
      * @param int $maxRows Amount of records on one page.
      * @return array Result array of the select query.
      */
-    static public function selectPage (string $tableName, string $orderField, string $orderDirection, int $offset, int $maxRows) {
+    static public function selectPage (
+
+        string $tableName,
+        string $orderField,
+        string $orderDirection,
+        int $offset,
+        int $maxRows
+
+    ) {
 
         if (!self::$db) self::connect();
         if (!self::$connectionStatus) return [];
