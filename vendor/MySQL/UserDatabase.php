@@ -18,6 +18,7 @@ final class UserDatabase extends Database {
      * @param string $login Login of the future user.
      * @param string $password Password of the future user.
      * @param string $repeat Password verification.
+     * @return array Returns empty array in case of successfull delete. Or array with errors.
      */
     static public function addUser (string $login, string $password, string $repeat) {
 
@@ -48,7 +49,7 @@ final class UserDatabase extends Database {
      * Remove user from database by id.
      * @param int $id Id of the user to be deleted.
      * @param int $emitterId Id of the user who trying to delete.
-     * @return array Returns empty array in case of successfull delete. Or array with error.
+     * @return array Returns empty array in case of successfull delete. Or array with errors.
      */
     static public function removeUser (int $id, int $emitterId) {
 
