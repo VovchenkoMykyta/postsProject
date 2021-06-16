@@ -58,7 +58,7 @@ final class UserDatabase extends Database {
 
         if (!$isUserExist) return ["This user does not exist"];
 
-        $deleteResult = static::delete( self::$tableName, $id);
+        $deleteResult = static::delete(self::$tableName, $id);
 
         if (!$deleteResult) return ["Server database error"];
 
