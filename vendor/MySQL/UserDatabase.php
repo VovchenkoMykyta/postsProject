@@ -95,7 +95,7 @@ final class UserDatabase extends Database {
      * @param int $id Id of the user to search.
      * @return array Returns array with user data or empty array.
      */
-    static private function getUserById (int $id) {
+    static public function getUserById (int $id) {
         
         return static::selectOne(self::$tableName, "id", $id);
 
@@ -106,7 +106,7 @@ final class UserDatabase extends Database {
      * @param string $login Login of the user to search.
      * @return array Returns array with user data or empty array.
      */
-    static private function getUserByLogin (string $login) {
+    static public function getUserByLogin (string $login) {
         
         return static::selectOne(self::$tableName, "login", $login);
 
