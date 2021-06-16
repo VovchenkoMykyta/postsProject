@@ -125,10 +125,6 @@ final class UserDatabase extends Database {
 
         $errors = [];
 
-        if ($password !== $repeat) $errors[] = "Passwords do not match";
-
-        if (strlen($password) < 6) $errors[] = "Password is too short";
-
         $passwordArray = explode("", $password);
 
         $oneLowerCase = false;
@@ -143,11 +139,14 @@ final class UserDatabase extends Database {
 
         }
 
-        if (!$oneLowerCase) $errors[]   = "Password needs to contain one lower case letter";
-        if (!$oneUpperCase) $errors[]   = "Password needs to contain one upper case letter";
-        if (!$oneNumber) $errors[]      = "Password needs to contain one number";
+        if (!$oneLowerCase)         $errors[] = "Password needs to contain one lower case letter";
+        if (!$oneUpperCase)         $errors[] = "Password needs to contain one upper case letter";
+        if (!$oneNumber)            $errors[] = "Password needs to contain one number";
+        if ($password !== $repeat)  $errors[] = "Passwords do not match";
+        if (strlen($password) < 6)  $errors[] = "Password is too short";
 
         return $errors;
+
     }
 
     /**
