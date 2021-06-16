@@ -1,7 +1,7 @@
 <?php
 
 namespace MySQL;
-
+include_once "config.php";
 /**
  * Basic class to work woth MySQL queries.
  */

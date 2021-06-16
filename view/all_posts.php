@@ -1,7 +1,7 @@
 <div>
     <?php
 
-    $posts = $post->getPostPage(0, 5);
+    $posts = \MySQL\PostDatabase::getPostPage(0, 5);
 
 
     foreach ($posts as $post1){

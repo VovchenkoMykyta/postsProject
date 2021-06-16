@@ -1,6 +1,7 @@
 <?php
+    include_once "../config.php";
     $page = new \Base\Page('all_posts.php', 'one_post.php');
-    $post = new \MySQL\PostDatabase();
+
 ?>
 <!doctype html>
 <html lang="en">

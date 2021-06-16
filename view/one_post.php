@@ -1,8 +1,8 @@
 <div>
     <?php
+    include_once "../vendor/MySQL/Database.php";
     include_once "../vendor/MySQL/PostDatabase.php";
-    $post = new \MySQL\PostDatabase();
-    $posts = $post->getPostPage(0,1);
+    $posts =  \MySQL\PostDatabase::getPostById(1);
     var_dump($posts);
     exit();
     $one_post = $post->getPostById($id);
