@@ -27,13 +27,14 @@ abstract class Database {
 
         if (self::$db && self::$connectionStatus) return;
 
-        // self::$db = new \mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
+        self::$db = new \mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
 
         if (self::$db->connect_errno) {
             self::$connectionStatus = false;
         } else {
             self::$connectionStatus = true;
         }
+
     }
 
     /**
@@ -70,6 +71,7 @@ abstract class Database {
         $query = substr($query, 0, -2) . ");";
 
         return self::$db->query($query);
+
     }
 
     /**
@@ -100,6 +102,7 @@ abstract class Database {
         $result = self::$db->query($query);
 
         return $result;
+
     }
 
     /**
@@ -121,6 +124,7 @@ abstract class Database {
         $result = self::$db->query($query);
 
         return $result;
+
     }
 
     /**
