@@ -2,64 +2,43 @@
 
 namespace Base;
 
-use MySQL\PostDatabase;
-use MySQL\UserDatabase;
+final class Router {
 
-final class Router
-{
+    static public function init () {
 
-    static public function init()
-    {
-        $userDB = new UserDatabase();
-        $post = new PostDatabase();
-        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+        $uri = parse_url($_SERVER["REQUEST_URI"]);
+        $pathArray = explode("/", substr($uri["path"], 1));
 
-            $user = filter_input_array(INPUT_POST);
-
-            $userDB->addUser($user['login'], $user['password'], $user['repeat']);
-
-            self::redirect();
-
-        } else if ($_SERVER['REQUEST_METHOD'] === 'GET') {
-
-            if (isset($_GET['id'])) {
-                $deleteId = filter_input(INPUT_GET, 'id');
-                $emitterId = $_COOKIE['id'];
-
-                if ($deleteId !== null) {
-
-                    $id = intval($deleteId);
-
-                    $userDB->removeUser($id, $emitterId);
-
-                }
-                self::redirect();
+        if ($_SERVER['REQUEST_METHOD'] === 'GET') {
+            
+            if ($pathArray[0] === "admin") {
+                AdminGetController::initGetRequest($pathArray);
+            } else if ($pathArray[0] === "login") {
+                AuthorizationController::initGetRequest();
+            } else if ($pathArray[0] === "user") {
+                UserController::initGetRequest($pathArray);
+            } else if ($pathArray[0] === "error") {
+                ErrorController::initGetRequest();
+            } else {
+                FrontendController::redirectToErrorPage();
             }
 
-            $id = filter_input(INPUT_GET, 'id');
-            if ($id === null) {
-                $posts = $post->getPostPage(0, 5);
-                $page = new Page('view/all_posts.php', 'view/main_template.php');
-                $page->render($posts);
-            } elseif ($id !== null) {
-                $intId = intval($id);
-                $one_post = $post->getPostById($intId);
-                $page = new Page('view/one_post.php', 'view/main_template.php');
-                $page->render($one_post);
+        } else if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+
+            $params = filter_input_array(INPUT_POST);
+
+            if ($pathArray[0] === "admin") {
+                AdminPostController::initPostRequest($pathArray, $params);
+            } else if ($pathArray[0] === "login" || $pathArray[0] === "logout") {
+                AuthorizationController::initPostRequest($pathArray, $params);
+            } else {
+                FrontendController::redirectToErrorPage();
             }
 
         } else {
-
-            $userDB->getUserList();
-
+            FrontendController::redirect();
         }
 
     }
 
-    static public function redirect()
-    {
-
-        header('Location: index.php');
-
-    }
 }
