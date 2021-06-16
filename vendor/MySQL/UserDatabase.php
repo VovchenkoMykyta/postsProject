@@ -29,9 +29,6 @@ final class UserDatabase extends Database {
         $loginErrors = self::loginVerify($login);
         if ($loginErrors) $errors[] = $loginErrors;
 
-        $isUserExist = self::getUserByLogin($login);
-        if ($isUserExist) $errors[] = "User with this name already exists";
-
         if ($errors) return $errors;
 
         $passwordHash = password_hash($password, PASSWORD_DEFAULT);
@@ -158,7 +155,10 @@ final class UserDatabase extends Database {
         
         $errors = [];
 
+        $isUserExist = self::getUserByLogin($login);
+
         if (strlen($login) < 6) $errors[] = "Login is too short";
+        if ($isUserExist)       $errors[] = "User with this name already exists";
 
         return $errors;
 
