@@ -159,7 +159,7 @@ final class UserDatabase extends Database {
             }
         }
 
-        if (!$oneNumber) $errors[] = "Password needs to contain one upper case letter";
+        if (!$oneNumber) $errors[] = "Password needs to contain one number";
 
         return $errors;
     }
