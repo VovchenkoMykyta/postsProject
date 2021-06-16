@@ -124,12 +124,12 @@ class Database {
     }
 
     /**
-     * Select query to database.
+     * Select query to database. Returns one record only.
      * @param string $tableName Name of the table to send query.
      * @param int $id Id of the records to be returned. Returns all of the record if it was not provided.
-     * @return array Result array of the select query.
+     * @return array Result array with the specific record.
      */
-    static public function select (string $tableName, int $id = NULL) {
+    static public function selectOne (string $tableName, int $id = NULL) {
 
         if (!self::$db) self::connect();
         if (!self::$connectionStatus) return [];
@@ -139,7 +139,7 @@ class Database {
 
         $query = "SELECT * FROM `$tableName`";
 
-        if ($id) $query .= " WHERE `id` = '$id' LIMIT 1;";
+        if ($id) $query .= " WHERE `id` = '$id' LIMIT 1";
 
         $query .= ";";
 
@@ -152,6 +152,38 @@ class Database {
         }
 
         if ($id) return $result[0];
+        return $result;
+
+    }
+
+    /**
+     * Select query to database. Returns all the records.
+     * @param string $tableName Name of the table to send query.
+     * @param string $order Name of the field to sort select query.
+     * @return array Result array of the select query.
+     */
+    static public function selectAll (string $tableName, string $order = NULL) {
+
+        if (!self::$db) self::connect();
+        if (!self::$connectionStatus) return [];
+
+        $tableName = addslashes($tableName);
+        if ($order) $order = addslashes($order);
+
+        $query = "SELECT * FROM `$tableName`";
+
+        if ($order) $query .= " ORDER BY `$order`";
+
+        $query .= ";";
+
+        $result = self::$db->query($query);
+
+        if ($result instanceof \mysqli_result) {
+            $result = $result->fetch_all(MYSQLI_ASSOC);
+        } else {
+            return [];
+        }
+
         return $result;
 
     }
