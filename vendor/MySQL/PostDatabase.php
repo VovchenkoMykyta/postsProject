@@ -160,7 +160,7 @@ final class PostDatabase extends Database {
      * @param string $content Content of the page to be truncated.
      * @return string Returns small content from provided content.
      */
-    static private function getSmallContent (string $content) {
+    static function getSmallContent (string $content) {
 
         if ( strlen($content < 3) ) return "...";
 
