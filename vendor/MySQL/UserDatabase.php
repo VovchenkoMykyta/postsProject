@@ -132,34 +132,20 @@ final class UserDatabase extends Database {
         $passwordArray = explode("", $password);
 
         $oneLowerCase = false;
-        foreach ($passwordArray as $letter) {
-            if ($letter === strtolower($letter)) {
-                $oneLowerCase = true;
-                break;
-            }
-        }
-
-        if (!$oneLowerCase) $errors[] = "Password needs to contain one lower case letter";
-
         $oneUpperCase = false;
-        foreach ($passwordArray as $letter) {
-            if ($letter === strtoupper($letter)) {
-                $oneUpperCase = true;
-                break;
-            }
-        }
-
-        if (!$oneUpperCase) $errors[] = "Password needs to contain one upper case letter";
-
         $oneNumber = false;
+
         foreach ($passwordArray as $letter) {
-            if ($letter === intval($letter)) {
-                $oneNumber = true;
-                break;
-            }
+
+            if ($letter === strtolower($letter)) $oneLowerCase = true;
+            if ($letter === strtoupper($letter)) $oneUpperCase = true;
+            if ($letter === strval(intval($letter)) ) $oneNumber = true;
+
         }
 
-        if (!$oneNumber) $errors[] = "Password needs to contain one number";
+        if (!$oneLowerCase) $errors[]   = "Password needs to contain one lower case letter";
+        if (!$oneUpperCase) $errors[]   = "Password needs to contain one upper case letter";
+        if (!$oneNumber) $errors[]      = "Password needs to contain one number";
 
         return $errors;
     }
