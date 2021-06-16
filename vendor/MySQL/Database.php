@@ -5,7 +5,7 @@ namespace MySQL;
 /**
  * Basic class to work woth MySQL queries.
  */
-class Database {
+abstract class Database {
 
     /**
      * Connection to database.
