@@ -166,7 +166,8 @@ class Database {
     /**
      * Select query to database. Returns all the records.
      * @param string $tableName Name of the table to send query.
-     * @param string $order Name of the field to sort select query.
+     * @param string $orderField Name of the field to sort select query.
+     * @param string $orderDirection ASC or DESC direction of the result.
      * @return array Result array of the select query.
      */
     static public function selectAll (string $tableName, string $orderField = NULL, string $orderDirection = NULL) {
@@ -203,11 +204,13 @@ class Database {
     /**
      * Select query to database with pagination.
      * @param string $tableName Name of the table to send query.
+     * @param string $orderField Name of the field to sort select query.
+     * @param string $orderDirection ASC or DESC direction of the result.
      * @param int $offset Number of the page.
      * @param int $maxRows Amount of records on one page.
      * @return array Result array of the select query.
      */
-    static public function selectPage (string $tableName, int $offset, int $maxRows) {
+    static public function selectPage (string $tableName, string $orderField, string $orderDirection, int $offset, int $maxRows) {
 
         if (!self::$db) self::connect();
         if (!self::$connectionStatus) return [];
@@ -216,7 +219,7 @@ class Database {
         $offset = (int)addslashes($offset);
         $maxRows = (int)addslashes($maxRows);
 
-        $query = "SELECT * FROM `$tableName` LIMIT $maxRows OFFSET $offset;";
+        $query = "SELECT * FROM `$tableName` ORDER BY `$orderField` $orderDirection LIMIT $maxRows OFFSET $offset;";
 
         $result = self::$db->query($query);
 

@@ -18,6 +18,7 @@ final class UserDatabase extends Database {
      * @param string $login Login of the future user.
      * @param string $password Password of the future user.
      * @param string $repeat Password verification.
+     * @return array Returns empty array in case of successfull delete. Or array with errors.
      */
     static public function addUser (string $login, string $password, string $repeat) {
 
@@ -28,9 +29,6 @@ final class UserDatabase extends Database {
 
         $loginErrors = self::loginVerify($login);
         if ($loginErrors) $errors[] = $loginErrors;
-
-        $isUserExist = self::getUserByLogin($login);
-        if ($isUserExist) $errors[] = "User with this name already exists";
 
         if ($errors) return $errors;
 
@@ -51,7 +49,7 @@ final class UserDatabase extends Database {
      * Remove user from database by id.
      * @param int $id Id of the user to be deleted.
      * @param int $emitterId Id of the user who trying to delete.
-     * @return array Returns empty array in case of successfull delete. Or array with error.
+     * @return array Returns empty array in case of successfull delete. Or array with errors.
      */
     static public function removeUser (int $id, int $emitterId) {
 
@@ -61,7 +59,7 @@ final class UserDatabase extends Database {
 
         if (!$isUserExist) return ["This user does not exist"];
 
-        $deleteResult = static::delete( self::$tableName, $id);
+        $deleteResult = static::delete(self::$tableName, $id);
 
         if (!$deleteResult) return ["Server database error"];
 
@@ -98,7 +96,7 @@ final class UserDatabase extends Database {
      * @param int $id Id of the user to search.
      * @return array Returns array with user data or empty array.
      */
-    static private function getUserById (int $id) {
+    static public function getUserById (int $id) {
         
         return static::selectOne(self::$tableName, "id", $id);
 
@@ -109,7 +107,7 @@ final class UserDatabase extends Database {
      * @param string $login Login of the user to search.
      * @return array Returns array with user data or empty array.
      */
-    static private function getUserByLogin (string $login) {
+    static public function getUserByLogin (string $login) {
         
         return static::selectOne(self::$tableName, "login", $login);
 
@@ -125,43 +123,28 @@ final class UserDatabase extends Database {
 
         $errors = [];
 
-        if ($password !== $repeat) $errors[] = "Passwords do not match";
-
-        if (strlen($password) < 6) $errors[] = "Password is too short";
-
         $passwordArray = explode("", $password);
 
         $oneLowerCase = false;
-        foreach ($passwordArray as $letter) {
-            if ($letter === strtolower($letter)) {
-                $oneLowerCase = true;
-                break;
-            }
-        }
-
-        if (!$oneLowerCase) $errors[] = "Password needs to contain one lower case letter";
-
         $oneUpperCase = false;
-        foreach ($passwordArray as $letter) {
-            if ($letter === strtoupper($letter)) {
-                $oneUpperCase = true;
-                break;
-            }
-        }
-
-        if (!$oneUpperCase) $errors[] = "Password needs to contain one upper case letter";
-
         $oneNumber = false;
+
         foreach ($passwordArray as $letter) {
-            if ($letter === intval($letter)) {
-                $oneNumber = true;
-                break;
-            }
+
+            if ($letter === strtolower($letter)) $oneLowerCase = true;
+            if ($letter === strtoupper($letter)) $oneUpperCase = true;
+            if ($letter === strval(intval($letter)) ) $oneNumber = true;
+
         }
 
-        if (!$oneNumber) $errors[] = "Password needs to contain one upper case letter";
+        if (!$oneLowerCase)         $errors[] = "Password needs to contain one lower case letter";
+        if (!$oneUpperCase)         $errors[] = "Password needs to contain one upper case letter";
+        if (!$oneNumber)            $errors[] = "Password needs to contain one number";
+        if ($password !== $repeat)  $errors[] = "Passwords do not match";
+        if (strlen($password) < 6)  $errors[] = "Password is too short";
 
         return $errors;
+
     }
 
     /**
@@ -173,7 +156,10 @@ final class UserDatabase extends Database {
         
         $errors = [];
 
+        $isUserExist = self::getUserByLogin($login);
+
         if (strlen($login) < 6) $errors[] = "Login is too short";
+        if ($isUserExist)       $errors[] = "User with this name already exists";
 
         return $errors;
 
