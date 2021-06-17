@@ -88,7 +88,7 @@ final class AdminPostController extends FrontendController {
         $postName = $params["name"] ?? NULL;
         $postContent = $params["content"] ?? NULL;
 
-        if (!$postId || !$postName || $postContent) {
+        if (!$postId || !$postName || !$postContent) {
             $_SESSION["errors"] = ["Incorrect data"];
             static::redirect("admin/news/edit");
         }
