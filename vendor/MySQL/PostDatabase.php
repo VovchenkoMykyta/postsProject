@@ -156,6 +156,23 @@ final class PostDatabase extends Database {
     }
 
     /**
+     * Get list of posts according to selected page.
+     * @param int $offset Page number to select.
+     * @param int $maxPosts Maximum amount of posts on one page.
+     * @param string $orderDirection Direction of the sorted result. ASC or DESC only.
+     * @return array Returns array with posts data or empty array.
+     */
+    static public function getPostAll () {
+
+        $selectResult = static::selectAll (
+            self::$tableName
+        );
+
+        return $selectResult;
+
+    }
+
+    /**
      * Creates small content for page.
      * @param string $content Content of the page to be truncated.
      * @return string Returns small content from provided content.
