@@ -1,4 +1,4 @@
 <?php
 
 include "autoload.php";
-\Base\Router::init();
+Base\Router::init();
