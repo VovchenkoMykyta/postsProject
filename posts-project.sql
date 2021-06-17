@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Jun 17, 2021 at 06:25 PM
+-- Generation Time: Jun 17, 2021 at 06:33 PM
 -- Server version: 8.0.19
 -- PHP Version: 7.4.5
 
@@ -42,6 +42,25 @@ CREATE TABLE `posts` (
 INSERT INTO `posts` (`id`, `user_id`, `name`, `content`, `creation_date`) VALUES
 (1, 1, 'post name', 'post content', '2021-06-17 18:25:19');
 
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `users`
+--
+
+CREATE TABLE `users` (
+  `id` bigint UNSIGNED NOT NULL,
+  `login` varchar(100) NOT NULL,
+  `password` varchar(60) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `users`
+--
+
+INSERT INTO `users` (`id`, `login`, `password`) VALUES
+(1, 'admin', '$2y$10$.FwhNB5l1ivzI7ryrhaYfufAj8Q8LRW27IXbC2PZR7K0H5DgsxQ7y');
+
 --
 -- Indexes for dumped tables
 --
@@ -54,6 +73,13 @@ ALTER TABLE `posts`
   ADD KEY `user_id` (`user_id`);
 
 --
+-- Indexes for table `users`
+--
+ALTER TABLE `users`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `login` (`login`);
+
+--
 -- AUTO_INCREMENT for dumped tables
 --
 
@@ -61,6 +87,12 @@ ALTER TABLE `posts`
 -- AUTO_INCREMENT for table `posts`
 --
 ALTER TABLE `posts`
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT for table `users`
+--
+ALTER TABLE `users`
   MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
