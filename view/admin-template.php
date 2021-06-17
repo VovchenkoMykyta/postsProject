@@ -23,13 +23,16 @@
     <?php endif;?>
 </header>
 <main>
+    
+    <?php
+        if ( isset($_SESSION["errors"]) ) {
+            var_dump($_SESSION["errors"]);
+            unset($_SESSION["errors"]);
+        }
+    ?>
+        
     <?php include_once "./view/".$this->pageFile.".php"; ?>
-    <?php if ( $this->data ) var_dump($this->data) ?>
-    <?php if ( isset($_SESSION["errors"]) ) {
-        var_dump($_SESSION["errors"]);
-        unset($_SESSION["errors"]);
-     }
-     ?>
+    
 </main>
 <footer>
     postsProject &copy;
