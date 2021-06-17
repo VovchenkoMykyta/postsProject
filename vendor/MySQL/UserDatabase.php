@@ -58,6 +58,29 @@ final class UserDatabase extends Database {
         $isUserExist = self::getUserById($id);
 
         if (!$isUserExist) return ["This user does not exist"];
+        
+        $postsList = PostDatabase::getPostAllByAuthorId(intval($id));
+        
+        if ($postsList) {
+            
+            var_dump($postsList);
+    
+            $deleteAllPosts = true;
+    
+            foreach ($postsList as $post) {
+                
+                if ($post["user_id"] == $id) {
+                    $deletePostResult = PostDatabase::removePost($post["id"], $post["user_id"]);
+                    if ($deletePostResult) $deleteAllPosts = false;
+                    break;
+                }
+                
+            }
+    
+            if (!$deleteAllPosts) return ["Can not delete user's posts"];
+            
+        }
+        
 
         $deleteResult = static::delete(self::$tableName, $id);
 

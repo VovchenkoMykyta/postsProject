@@ -194,6 +194,36 @@ abstract class Database {
         return $result;
 
     }
+    
+    /**
+     * Select query to database. Returns all the records matching conditions.
+     * @param string $tableName Name of the table to send query.
+     * @param string $fieldName Name of the field to restrict result.
+     * @param string $fieldValue Value of the field to restrict result.
+     * @return array Result array of the select query. Or empty array.
+     */
+    static public function selectByField (string $tableName, string $fieldName, string $fieldValue) {
+        
+        if (!self::$db) self::connect();
+        if (!self::$connectionStatus) return [];
+        
+        $tableName = addslashes($tableName);
+        $fieldName = addslashes($fieldName);
+        $fieldValue = addslashes($fieldValue);
+        
+        $query = "SELECT * FROM `$tableName` WHERE `$fieldName` = '$fieldValue';";
+        
+        $result = self::$db->query($query);
+        
+        if ($result instanceof \mysqli_result) {
+            $result = $result->fetch_all(MYSQLI_ASSOC);
+        } else {
+            return [];
+        }
+        
+        return $result;
+        
+    }
 
     /**
      * Select query to database with pagination.
