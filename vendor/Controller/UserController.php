@@ -15,11 +15,20 @@ class UserController extends FrontendController {
 
         $actionType = $pathArray[1] ?? NULL;
 
+        $data = [];
+
         if ($actionType === "list") {
 
             $pageFile = "user-news-list";
             $pageNumber = $params["page"] ?? NULL;
             if ( $pageNumber !== strval(intval($pageNumber)) ) $pageNumber = 1;
+            $data["page"] = $pageNumber;
+
+        } else if ( !$actionType && isset($params["id"]) ) {
+
+            $pageFile = "user-news-one";
+            $newsId = $params["id"] ?? NULL;
+            $data["id"] = $newsId;
 
         } else if (!$actionType) {
 
@@ -30,8 +39,6 @@ class UserController extends FrontendController {
             static::redirectToErrorPage();
 
         }
-
-        $data = ["page" => $pageNumber];
 
         $page = new Page (static::$templateName, $pageFile, $data);
         $page->render();
