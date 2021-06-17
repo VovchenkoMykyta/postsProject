@@ -189,9 +189,9 @@ final class PostDatabase extends Database {
      */
     static public function getSmallContent (string $content) {
 
-        if ( strlen($content < 3) ) return "...";
+        if ( strlen($content) < 3 ) return "...";
 
-        $content = substr($content, self::$smallContentSize-3);
+        $content = substr($content, 0, self::$smallContentSize-3);
 
         $content .= "...";
 
