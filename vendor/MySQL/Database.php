@@ -153,7 +153,7 @@ abstract class Database {
             return [];
         }
 
-        return $result[0];
+        return $result ? $result[0] : [];
 
     }
 
