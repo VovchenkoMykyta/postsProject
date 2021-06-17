@@ -1,0 +1,26 @@
+* {
+    box-sizing: border-box;
+}
+
+#admin-user-table {
+    border-collapse: collapse;
+    width: 500px;
+    margin: 20px auto;
+}
+
+#admin-user-table tr,
+#admin-user-table td {
+    border: 1px solid black;
+}
+
+#admin-user-table td {
+    overflow: hidden;
+    max-width: 300px;
+    padding: 4px 8px;
+}
+
+input[type="submit"] {
+    cursor: pointer;
+    user-select: none;
+    margin: 0; /* Fix for admin-template.css */
+}

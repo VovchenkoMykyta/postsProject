@@ -16,6 +16,7 @@
     <title>Admin</title>
 </head>
 <body>
+<<<<<<< Updated upstream
 <header>
     <?php if ( !is_null($userId) ) : ?>
         <?= \MySQL\UserDatabase::getUserById($userId)["login"] ?>
@@ -34,5 +35,38 @@
 <footer>
     postsProject &copy;
 </footer>
+=======
+    
+    <header>
+        <?php if ( !is_null($userId) ) : ?>
+            <?= \MySQL\UserDatabase::getUserById($userId)["login"] ?>
+            <form action="/logout" method="POST"><input type="submit" value="logout"></form>
+        <?php endif;?>
+    </header>
+    
+    <main>
+        
+        <div class="container">
+    
+            <?php
+//                if ( isset($_SESSION["errors"]) ) {
+//                    var_dump($_SESSION["errors"]);
+//                    unset($_SESSION["errors"]);
+//                }
+            ?>
+
+            <?php include_once "./view/".$this->pageFile.".php"; ?>
+            
+        </div>
+    
+    
+    
+    </main>
+    
+    <footer>
+        postsProject &copy;
+    </footer>
+    
+>>>>>>> Stashed changes
 </body>
 </html>

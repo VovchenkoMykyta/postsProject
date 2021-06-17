@@ -3,7 +3,8 @@
 ?>
 
 <?php if ($users) : ?>
-<table>
+<div id="container-user-table">
+<table id="admin-user-table">
 
     <thead>
         <tr>
@@ -33,4 +34,5 @@
     <tfoot></tfoot>
 
 </table>
+</div>
 <?php endif ?>
