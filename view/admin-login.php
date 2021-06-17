@@ -1,5 +1,9 @@
 <form action="/login" method="POST">
-    <input type="text" name="login">
-    <input type="password" name="password">
+    <label>Login:
+        <input type="text" name="login">
+    </label>
+    <label>Password:
+        <input type="password" name="password">
+    </label>
     <input type="submit" value="Login">
 </form>
