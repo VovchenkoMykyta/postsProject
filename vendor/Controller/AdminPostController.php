@@ -1,6 +1,6 @@
 <?php
 
-namespace Base;
+namespace Controller;
 
 use \MySQL\PostDatabase;
 use \MySQL\UserDatabase;
@@ -25,18 +25,18 @@ final class AdminPostController extends FrontendController {
     static public function initPostRequest (array $pathArray, array $params = NULL) {
 
         session_start();
-        if (!isset($_SESSION["login"]) || $_SESSION["login"] !== "yes") FrontendController::redirect("login");
+        if (!isset($_SESSION["login"]) || $_SESSION["login"] !== "yes") static::redirect("login");
 
         $actionArea = $pathArray[1] ?? NULL;
         $actionType = $pathArray[2] ?? NULL;
 
-        if (!$actionArea || !$actionType) FrontendController::redirectToErrorPage();
+        if (!$actionArea || !$actionType) static::redirectToErrorPage();
 
         $actionArray = static::$actionList[$actionArea] ?? NULL;
         $methodName = $actionArray[$actionType] ?? NULL;
-        if (!$methodName) FrontendController::redirectToErrorPage();
+        if (!$methodName) static::redirectToErrorPage();
 
-        call_user_func([__CLASS__, $methodName], $params);
+        forward_static_call($methodName, $params);
 
     }
 
@@ -45,15 +45,21 @@ final class AdminPostController extends FrontendController {
         $postName = $params["name"] ?? NULL;
         $postContent = $params["content"] ?? NULL;
 
-        if (!$postName || !$postContent) FrontendController::redirectToErrorPage();
+        if (!$postName || !$postContent) {
+            $_SESSION["errors"] = ["Incorrect data"];
+            static::redirect("admin/news/add");
+        }
 
         $userId = intval($_SESSION["user_id"]);
+
+        var_dump($postName, $postContent, $userId);
+        exit();
 
         $errors = PostDatabase::addPost($postName, $postContent, $userId);
 
         if ($errors)  $_SESSION["errors"] = $errors;
 
-        FrontendController::redirect($params[0], $params[1], $params[2]);
+        static::redirect($params[0], $params[1], $params[2]);
 
     }
 
@@ -61,7 +67,10 @@ final class AdminPostController extends FrontendController {
 
         $postId = $params["id"] ?? NULL;
 
-        if (!$postId) FrontendController::redirectToErrorPage();
+        if (!$postId) {
+            $_SESSION["errors"] = ["Such post does not exists"];
+            static::redirect("admin/news/list");
+        }
 
         $postId = intval($postId);
         $userId = intval($_SESSION["user_id"]);
@@ -70,7 +79,7 @@ final class AdminPostController extends FrontendController {
 
         if ($errors)  $_SESSION["errors"] = $errors;
 
-        FrontendController::redirect($params[0], $params[1], $params[2]);
+        static::redirect($params[0], $params[1], $params[2]);
 
     }
 
@@ -80,7 +89,10 @@ final class AdminPostController extends FrontendController {
         $postName = $params["name"] ?? NULL;
         $postContent = $params["content"] ?? NULL;
 
-        if (!$postId || !$postName || $postContent) FrontendController::redirectToErrorPage();
+        if (!$postId || !$postName || $postContent) {
+            $_SESSION["errors"] = ["Incorrect data"];
+            static::redirect("admin/news/edit");
+        }
 
         $postId = intval($postId);
 
@@ -88,7 +100,7 @@ final class AdminPostController extends FrontendController {
 
         if ($errors)  $_SESSION["errors"] = $errors;
 
-        FrontendController::redirect($params[0], $params[1], $params[2]);
+        static::redirect($params[0], $params[1], $params[2]);
 
     }
 
@@ -98,13 +110,16 @@ final class AdminPostController extends FrontendController {
         $password = $params["password"] ?? NULL;
         $repeat = $params["repeat"] ?? NULL;
 
-        if (!$login || !$password || $repeat) FrontendController::redirectToErrorPage();
+        if (!$login || !$password || !$repeat) {
+            $_SESSION["errors"] = ["Incorrect data"];
+            static::redirect("admin/user/add");
+        }
 
         $errors = UserDatabase::addUser($login, $password, $repeat);
 
         if ($errors)  $_SESSION["errors"] = $errors;
 
-        FrontendController::redirect($params[0], $params[1], $params[2]);
+        static::redirect($params[0], $params[1], $params[2]);
 
     }
 
@@ -113,13 +128,16 @@ final class AdminPostController extends FrontendController {
         $targetId = $params["id"] ?? NULL;
         $userId = intval($_SESSION["user_id"]);
 
-        if (!$targetId) FrontendController::redirectToErrorPage();
+        if (!$targetId) {
+            $_SESSION["errors"] = ["Such user does not exists"];
+            static::redirect("admin/user/list");
+        }
 
         $errors = UserDatabase::removeUser($targetId, $userId);
 
         if ($errors)  $_SESSION["errors"] = $errors;
 
-        FrontendController::redirect($params[0], $params[1], $params[2]);
+        static::redirect($params[0], $params[1], $params[2]);
 
     }
 

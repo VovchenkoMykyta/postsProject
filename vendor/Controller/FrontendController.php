@@ -1,6 +1,6 @@
 <?php
 
-namespace Base;
+namespace Controller;
 
 abstract class FrontendController {
 
@@ -10,7 +10,7 @@ abstract class FrontendController {
     }
 
     static public function redirectToErrorPage () {
-        header("Location: /");
+        header("Location: /error");
         exit();
     }
 

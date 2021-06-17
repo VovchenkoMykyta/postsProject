@@ -1,6 +1,8 @@
 <?php
 
-namespace Base;
+namespace Controller;
+
+use \Base\Page;
 
 class ErrorController extends FrontendController {
 

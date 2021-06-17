@@ -1,39 +1,40 @@
 <?php
 
-namespace Base;
+namespace Controller;
+
+use \Base\Page;
 
 class UserController extends FrontendController {
 
     static protected $templateName = "user-template";
 
-    static public function initGetRequest (array $pathArray) {
+    static public function initGetRequest (array $pathArray, array $params = NULL) {
 
-        $actionArea = $pathArray[1] ?? NULL;
+        $actionArea = $pathArray[0] ?? NULL;
         if ($actionArea !== "news") static::redirectToErrorPage();
 
-        $actionType = $pathArray[2] ?? NULL;
-        if ( $actionType === strval(intval($actionType)) ) {
+        $actionType = $pathArray[1] ?? NULL;
 
-            $pageFile = "user-news-one";
-            $data = ["news_id" => $actionType];
-
-        } else if ($actionType === "list") {
+        if ($actionType === "list") {
 
             $pageFile = "user-news-list";
+            $pageNumber = $params["page"] ?? NULL;
+            if ( $pageNumber !== strval(intval($pageNumber)) ) $pageNumber = 1;
 
-            $pageNumber = $pathArray[3] ?? NULL;
-            if ( $pageNumber === strval(intval($pageNumber)) ) {
-                $data = ["page" => $pageNumber];
-            } else {
-                $data = ["page" => 1];
-            }
+        } else if (!$actionType) {
+
+            static::redirect("news/list/?page=1");
 
         } else {
+
             static::redirectToErrorPage();
+
         }
 
-        $page = new Page (static::$templateName, $pageFile);
-        $page->render($data);
+        $data = ["page" => $pageNumber];
+
+        $page = new Page (static::$templateName, $pageFile, $data);
+        $page->render();
         exit();
 
     }
