@@ -15,8 +15,11 @@
         <main>
             <?php
             include "../autoload.php";
-            static::initGetRequest();
-
+            \Base\AuthorizationController::initGetRequest();
+            if(\Base\AuthorizationController::login($_POST['login'], $_POST['pass'])){
+                $page = new \Base\Page('admin-template', 'admin-list');
+                $page->render();
+            }
             ?>
         </main>
         <footer>
