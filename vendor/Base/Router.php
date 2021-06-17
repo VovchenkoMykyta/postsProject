@@ -2,6 +2,13 @@
 
 namespace Base;
 
+use \Controller\AdminGetController;
+use \Controller\AdminPostController;
+use \Controller\AuthorizationController;
+use \Controller\UserController;
+use \Controller\ErrorController;
+use \Controller\FrontendController;
+
 final class Router {
 
     static public function init () {
@@ -9,17 +16,21 @@ final class Router {
         $uri = parse_url($_SERVER["REQUEST_URI"]);
         $pathArray = explode("/", substr($uri["path"], 1));
 
+        $params = filter_input_array(INPUT_GET);
+
         if ($_SERVER['REQUEST_METHOD'] === 'GET') {
             
             if ($pathArray[0] === "admin") {
-                AdminGetController::initGetRequest($pathArray);
+                AdminGetController::initGetRequest($pathArray, $params);
             } else if ($pathArray[0] === "login") {
                 AuthorizationController::initGetRequest();
-            } else if ($pathArray[0] === "user") {
-                UserController::initGetRequest($pathArray);
+            } else if ($pathArray[0] === "news") {
+                UserController::initGetRequest($pathArray, $params);
             } else if ($pathArray[0] === "error") {
                 ErrorController::initGetRequest();
-            } else {
+            } if ($pathArray[0] === "") {
+                FrontendController::redirect("news/list/?page=1");
+            }else {
                 FrontendController::redirectToErrorPage();
             }
 

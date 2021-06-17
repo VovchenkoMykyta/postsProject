@@ -53,7 +53,7 @@ final class UserDatabase extends Database {
      */
     static public function removeUser (int $id, int $emitterId) {
 
-        if ($id === $emitterId) return ["You can not delete yourself"];
+        if ($id == $emitterId) return ["You can not delete yourself"];
 
         $isUserExist = self::getUserById($id);
 
@@ -75,7 +75,7 @@ final class UserDatabase extends Database {
      */
     static public function getUserList (string $orderField = NULL, string $orderDirection = NULL) {
 
-        if ($orderDirection !== "DESC" && $orderDirection !== "ASC") return [];
+        if ($orderDirection && $orderDirection !== "DESC" && $orderDirection !== "ASC") return [];
 
         if ($orderField && $orderDirection) {
             $selectResult = static::selectAll(self::$tableName, $orderField, $orderDirection);
@@ -123,7 +123,7 @@ final class UserDatabase extends Database {
 
         $errors = [];
 
-        $passwordArray = explode("", $password);
+        $passwordArray = str_split($password);
 
         $oneLowerCase = false;
         $oneUpperCase = false;

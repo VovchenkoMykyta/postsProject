@@ -63,9 +63,10 @@ final class PostDatabase extends Database {
         $errors = [];
 
         $post = self::getPostById($id);
+
         if(!$post) $errors[] = "Such post does not exists";
 
-        if($post && $post["author_id"] !== $emitterId) $errors[] = "Only author can delete this post";
+        if($post && $post["user_id"] != $emitterId) $errors[] = "Only author can delete this post";
 
         if ($errors) return $errors;
 
@@ -156,11 +157,25 @@ final class PostDatabase extends Database {
     }
 
     /**
+     * Get list of all posts.
+     * @return array Returns array with posts data or empty array.
+     */
+    static public function getPostAll () {
+
+        $selectResult = static::selectAll (
+            self::$tableName
+        );
+
+        return $selectResult;
+
+    }
+
+    /**
      * Creates small content for page.
      * @param string $content Content of the page to be truncated.
      * @return string Returns small content from provided content.
      */
-    static function getSmallContent (string $content) {
+    static private function getSmallContent (string $content) {
 
         if ( strlen($content < 3) ) return "...";
 

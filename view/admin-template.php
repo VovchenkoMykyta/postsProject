@@ -1,29 +1,38 @@
+<?php
+
+    if (isset($_SESSION["user_id"]) && $_SESSION["login"] === "yes") {
+        $userId = $_SESSION["user_id"];
+    } else {
+        $userId = NULL;
+    }
+    
+?>
 <!doctype html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport"
-              content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-        <meta http-equiv="X-UA-Compatible" content="ie=edge">
-        <title>Admin</title>
-        <link rel="stylesheet" href="../css/admin.css">
-    </head>
-    <body>
-        <header>
-            <h1>Admin panel</h1>
-        </header>
-        <main>
-            <?php
-            include "../autoload.php";
-            \Base\AuthorizationController::initGetRequest();
-            if(\Base\AuthorizationController::login($_POST['login'], $_POST['pass'])){
-                $page = new \Base\Page('admin-template', 'admin-list');
-                $page->render();
-            }
-            ?>
-        </main>
-        <footer>
-            <a href="https://github.com/VovchenkoMykyta/postsProject.git"><h3>Project</h3></a>
-        </footer>
-    </body>
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="/style/<?= $this->pageFile ?>.css">
+    <link rel="stylesheet" href="/style/admin-template.css">
+    <title>Admin</title>
+</head>
+<body>
+<header>
+    <?php if ( !is_null($userId) ) : ?>
+        <?= \MySQL\UserDatabase::getUserById($userId)["login"] ?>
+        <form action="/logout" method="POST"><input type="submit" value="logout"></form>
+    <?php endif ?>
+</header>
+<main>
+    <?php include_once "./view/".$this->pageFile.".php"; ?>
+    <?php if ( $this->data ) var_dump($this->data) ?>
+    <?php if ( isset($_SESSION["errors"]) ) {
+        var_dump($_SESSION["errors"]);
+        unset($_SESSION["errors"]);
+     }
+     ?>
+</main>
+<footer>
+    postsProject &copy;
+</footer>
+</body>
 </html>
