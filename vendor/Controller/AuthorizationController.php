@@ -17,6 +17,8 @@ class AuthorizationController extends FrontendController {
 
     static public function initPostRequest (array $pathArray, array $params = NULL) {
 
+        session_start();
+
         if ($pathArray[0] === "login") {
 
             $login = $params["login"] ?? NULL;
@@ -26,6 +28,8 @@ class AuthorizationController extends FrontendController {
                 $_SESSION["errors"] = ["Incorrect data"];
                 static::redirect("login");
             }
+
+            self::login($login, $password);
 
         } else if ($pathArray[0] === "logout") {
 

@@ -36,7 +36,7 @@ final class AdminPostController extends FrontendController {
         $methodName = $actionArray[$actionType] ?? NULL;
         if (!$methodName) static::redirectToErrorPage();
 
-        forward_static_call($methodName, $params);
+        forward_static_call("self::".$methodName, $params);
 
     }
 
@@ -52,14 +52,13 @@ final class AdminPostController extends FrontendController {
 
         $userId = intval($_SESSION["user_id"]);
 
-        var_dump($postName, $postContent, $userId);
-        exit();
+        
 
         $errors = PostDatabase::addPost($postName, $postContent, $userId);
 
         if ($errors)  $_SESSION["errors"] = $errors;
 
-        static::redirect($params[0], $params[1], $params[2]);
+        static::redirect("admin/news/add");
 
     }
 
@@ -79,7 +78,7 @@ final class AdminPostController extends FrontendController {
 
         if ($errors)  $_SESSION["errors"] = $errors;
 
-        static::redirect($params[0], $params[1], $params[2]);
+        static::redirect("admin/news/list");
 
     }
 
@@ -100,7 +99,7 @@ final class AdminPostController extends FrontendController {
 
         if ($errors)  $_SESSION["errors"] = $errors;
 
-        static::redirect($params[0], $params[1], $params[2]);
+        static::redirect("admin/news/list");
 
     }
 
@@ -117,9 +116,12 @@ final class AdminPostController extends FrontendController {
 
         $errors = UserDatabase::addUser($login, $password, $repeat);
 
-        if ($errors)  $_SESSION["errors"] = $errors;
+        if ($errors)  {
+            $_SESSION["errors"] = $errors;
+            static::redirect("admin/user/add");
+        }
 
-        static::redirect($params[0], $params[1], $params[2]);
+        static::redirect("admin/user/list");
 
     }
 
@@ -137,7 +139,7 @@ final class AdminPostController extends FrontendController {
 
         if ($errors)  $_SESSION["errors"] = $errors;
 
-        static::redirect($params[0], $params[1], $params[2]);
+        static::redirect("admin/user/list");
 
     }
 

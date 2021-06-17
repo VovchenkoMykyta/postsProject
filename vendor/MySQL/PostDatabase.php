@@ -63,9 +63,10 @@ final class PostDatabase extends Database {
         $errors = [];
 
         $post = self::getPostById($id);
+
         if(!$post) $errors[] = "Such post does not exists";
 
-        if($post && $post["author_id"] !== $emitterId) $errors[] = "Only author can delete this post";
+        if($post && $post["user_id"] != $emitterId) $errors[] = "Only author can delete this post";
 
         if ($errors) return $errors;
 

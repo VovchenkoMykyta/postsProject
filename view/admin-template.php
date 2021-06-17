@@ -1,3 +1,12 @@
+<?php
+
+    if (isset($_SESSION["user_id"]) && $_SESSION["login"] === "yes") {
+        $userId = $_SESSION["user_id"];
+    } else {
+        $userId = NULL;
+    }
+    
+?>
 <!doctype html>
 <html lang="en">
 <head>
@@ -8,12 +17,19 @@
 </head>
 <body>
 <header>
-    Logo
+    <?php if ( !is_null($userId) ) : ?>
+        <?= \MySQL\UserDatabase::getUserById($userId)["login"] ?>
+        <form action="/logout" method="POST"><input type="submit" value="logout"></form>
+    <?php endif ?>
 </header>
 <main>
     <?php include_once "./view/".$this->pageFile.".php"; ?>
-    <?= $this->pageFile ?>
-    <?php var_dump($this->data) ?>
+    <?php if ( $this->data ) var_dump($this->data) ?>
+    <?php if ( isset($_SESSION["errors"]) ) {
+        var_dump($_SESSION["errors"]);
+        unset($_SESSION["errors"]);
+     }
+     ?>
 </main>
 <footer>
     postsProject &copy;
