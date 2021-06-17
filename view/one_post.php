@@ -1,11 +1,9 @@
 <div>
     <?php
-    include_once "../vendor/MySQL/Database.php";
-    include_once "../vendor/MySQL/PostDatabase.php";
-    $posts =  \MySQL\PostDatabase::getPostById(1);
-    var_dump($posts);
-    exit();
-    $one_post = $post->getPostById($id);
-    echo $one_post;
+    include_once "../autoload.php";
+    include_once "../config.php";
+
+    static::getPostById(1);
+
     ?>
 </div>

@@ -13,6 +13,6 @@ class Page {
     }
 
     public function render(array $data = NULL){
-        include_once $this->templateFile.".php";
+        include_once $this->templateFile .".php";
     }
 }

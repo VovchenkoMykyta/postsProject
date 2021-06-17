@@ -1,0 +1,50 @@
+
+body{
+    max-width: 95vw;
+    margin: 5px auto;
+}
+header{
+    border: 1px solid black;
+    box-shadow: 4px 5px 9px 5px black;
+    text-align: center;
+}
+main{
+    margin-top: 12px;
+    min-height: 72vh;
+    max-width: 95vw;
+    box-shadow: 4px 5px 9px 5px black;
+    border: 1px solid black;
+}
+main div#form{
+    display: flex;
+    justify-content: center;
+    padding-top: 24vh;
+}
+main div form{
+    display: flex;
+    flex-direction: column;
+    max-width: 30vw;
+}
+main div form input{
+    margin: 10px auto;
+}
+main div form input[type='text']{
+margin-left: 22px;
+}
+main div form input[name='repeat']{
+    margin-left: 7px;
+}
+footer{
+    margin-top: 15px;
+    min-height: 15vh;
+    max-width: 95vw;
+    box-shadow: 4px 5px 9px 5px black;
+    border: 1px solid black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+footer a{
+    text-decoration: none;
+    color: black;
+}
