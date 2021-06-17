@@ -73,5 +73,4 @@ class AuthorizationController extends FrontendController {
         static::redirect("news/list/?page=1");
 
     }
-
 }
