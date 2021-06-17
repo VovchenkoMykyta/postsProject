@@ -1,9 +1,5 @@
-<div>
-    <?php
-    include_once "../autoload.php";
-    include_once "../config.php";
+<?php $post = \MySQL\PostDatabase::getPostById($this->data["id"]) ?>
 
-    static::getPostById(1);
+<p>PostName:<?= $post["name"] ?></p>
 
-    ?>
-</div>
+<p>PostName:<?= $post["content"] ?></p>
