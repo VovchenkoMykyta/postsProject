@@ -169,6 +169,18 @@ final class PostDatabase extends Database {
         return $selectResult;
 
     }
+    
+    /**
+     * Get list of all posts.
+     * @return array Returns array with posts data or empty array.
+     */
+    static public function getPostAllByAuthorId (int $id) {
+        
+        $selectResult = static::selectByField(self::$tableName,"user_id", $id);
+        
+        return $selectResult;
+        
+    }
 
     /**
      * Creates small content for page.
