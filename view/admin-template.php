@@ -20,7 +20,7 @@
     <?php if ( !is_null($userId) ) : ?>
         <?= \MySQL\UserDatabase::getUserById($userId)["login"] ?>
         <form action="/logout" method="POST"><input type="submit" value="logout"></form>
-    <?php endif ?>
+    <?php endif;?>
 </header>
 <main>
     <?php include_once "./view/".$this->pageFile.".php"; ?>

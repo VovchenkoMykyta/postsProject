@@ -1,0 +1,21 @@
+div#news-list{
+    display: flex;
+    flex-direction: column;
+    max-width: 70vw;
+    min-height: 7vh;
+    border: 1px solid black;
+    margin: 10px auto;
+    box-shadow: 3px 2px 2px 2px black;
+}
+div#news-list div{
+    margin-left: 15px;
+}
+div#news-list div a{
+    font-size: 18px;
+    text-decoration: none;
+    color: black;
+}
+div#news-list a{
+    text-decoration: none;
+    color: black;
+}
