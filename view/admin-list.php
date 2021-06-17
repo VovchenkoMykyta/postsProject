@@ -1,5 +1,6 @@
 <div>
     <?php
+    include "../autoload.php";
     $posts =  \MySQL\PostDatabase::getPostPage(0, 100);
     $tablePosts = "<table><tr><th>id</th><th>user_id</th><th>name</th><th>content</th><th>creation_date</th></tr>";
     foreach ($posts as $post) {
@@ -10,6 +11,7 @@
 </div>
 <div>
     <?php
+    include "../autoload.php";
     $userList = \MySQL\UserDatabase::getUserList();
     $tableUsers = "<table><tr><th>id</th><th>login</th><th>password</th></tr>";
     foreach ($userList as $user){
