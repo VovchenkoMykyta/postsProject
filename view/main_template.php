@@ -1,7 +1,6 @@
 <?php
-//    include_once "../config.php";
-    include "../autoload.php";
-    $page = new \Base\Page('main_template', 'one_post');
+    include_once "../config.php";
+    $page = new \Base\Page('all_posts.php', 'one_post.php');
 
 ?>
 <!doctype html>
@@ -12,7 +11,6 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Main</title>
-    <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
 </head>
 <body>
 <header>
