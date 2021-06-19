@@ -1,0 +1,21 @@
+main form{
+    display: flex;
+    flex-direction: column;
+    max-width: 40vw;
+    margin: 20vh auto;
+}
+main form input{
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+main form input[type=text]{
+    line-height: 2;
+}
+main form input[type=submit]{
+    max-width: 11vw;
+}
+main form textarea{
+    max-width: 40vw;
+    min-width: 39vw;
+    min-height: 20vh;
+}
