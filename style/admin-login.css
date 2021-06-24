@@ -9,6 +9,7 @@ form label{
 }
 form input{
     margin-top: 20px;
+    margin-right: 20px;
 }
 form input[type=text]{
     margin-left: 24px;

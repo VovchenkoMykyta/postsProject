@@ -17,8 +17,9 @@
 </head>
 <body>
 <header>
+    <span><h1>Admin Panel</h1></span>
     <?php if ( !is_null($userId) ) : ?>
-        <?= \MySQL\UserDatabase::getUserById($userId)["login"] ?>
+        <h2>User: <?= \MySQL\UserDatabase::getUserById($userId)["login"] ?> </h2>
         <form action="/logout" method="POST"><input type="submit" value="logout"></form>
     <?php endif;?>
 </header>
@@ -37,5 +38,6 @@
 <footer>
     postsProject &copy;
 </footer>
+<script src="../js/index.js"></script>
 </body>
 </html>
