@@ -8,11 +8,10 @@
 </head>
 <body>
 <header>
-    Logo
+    <h1>D-NEWS</h1>
 </header>
 <main>
     <?php include_once "./view/".$this->pageFile.".php"; ?>
-    <?= $this->pageFile ?>
 </main>
 <footer>
     postsProject &copy;

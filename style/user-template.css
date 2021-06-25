@@ -8,12 +8,27 @@ header{
     text-align: center;
     min-height: 15vh;
 }
+header h1{
+    font-style: oblique;
+    font-family:"French Script MT" ;
+    font-size: 64px;
+}
 main{
     margin-top: 12px;
     min-height: 72vh;
     max-width: 95vw;
     box-shadow: 2px 1px 2px 2px black;
     border: 1px solid black;
+}
+main div#news-list div{
+    display: flex;
+    align-items: center;
+    min-height: 55px;
+}
+main div#news-list div a{
+    text-decoration: underline;
+    font-size: 25px;
+    font-weight: 600;
 }
 main div#form{
     display: flex;
