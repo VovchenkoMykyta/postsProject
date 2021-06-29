@@ -18,6 +18,7 @@
     <title>Admin</title>
 </head>
 <body>
+
 <header>
 
     <div id="logo">
@@ -32,6 +33,7 @@
     <?php endif;?>
     
 </header>
+
 <main>
     
     <?php if ( !is_null($userId) ) : ?>
@@ -56,9 +58,10 @@
     </div>
    
 </main>
+
 <footer>
     <a href="https://github.com/VovchenkoMykyta/postsProject" id="copyright">postsProject &copy;</a>
 </footer>
-<script src="../js/index.js"></script>
+
 </body>
 </html>
