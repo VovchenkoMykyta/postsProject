@@ -1,67 +1,144 @@
-
-body{
-    max-width: 95vw;
-    margin: 5px auto;
+* {
+    margin: 0;
+    padding: 0;
+    border: none;
+    box-sizing: border-box;
+    font-family: sans-serif;
 }
+
+body {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    align-items: stretch;
+}
+
+/* --------------------- */
+
 header{
-    background-color: #bec3ea;
+    background-color: #586F7C;
     height: 50px;
     display: flex;
     flex-direction: row;
     flex-wrap: nowrap;
     align-content: center;
-    justify-content: space-around;
+    justify-content: space-between;
+    align-items: center;
+    color: white;
+}
+
+#logo {
+    width: 250px;
+    height: 50px;
+    text-align: center;
+    line-height: 50px;
+    cursor: default;
+    user-select: none;
+}
+
+#user {
+    min-width: 250px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: flex-end;
     align-items: center;
 }
-header form{
-    margin-bottom: 10px;
+
+#user span {
+    line-height: 50px;
+    margin-right: 25px;
+}
+
+#user form[action="/logout"] {
+    margin-right: 25px;
+}
+
+#user form[action="/logout"] input[type="submit"] {
+    cursor: pointer;
+    padding: 6px 14px;
+    background-color: #F4F4F9;
+    border: 1px solid #2F4550;
+    border-radius: 3px;
+}
+
+#user form[action="/logout"] input[type="submit"]:hover {
+    background-color: #B8DBD9;
+}
+
+/* --------------------- */
+
+main{
+    background-color: #F4F4F9;
+    flex-grow: 1;
+}
+
+/* --------------------- */
+
+#left-side-bar {
+    background-color: #2F4550;
+    width: 250px;
+    height: 100%;
+    float: left;
 }
 
 #links {
     list-style: none;
+    user-select: none;
 }
 
 #links li {
+    width: 250px;
+    height: 50px;
     display: inline-block;
+    text-align: center;
 }
 
-main{
-    margin-top: 12px;
-    min-height: 72vh;
-    max-width: 95vw;
-    box-shadow: 2px 1px 2px 2px black;
-    border: 1px solid black;
+#links li:hover {
+    background-color: #B8DBD9;
 }
-main div#form{
-    display: flex;
-    justify-content: center;
-    padding-top: 24vh;
+
+#links li:hover a {
+    color: #2F4550;
 }
-main div form{
+
+#links a {
+    color: white;
+    text-decoration: none;
+    cursor: pointer;
+    line-height: 50px;
+    width: 250px;
+    height: 50px;
+    display: block;
+}
+
+/* --------------------- */
+
+#container {
+    height: 100%;
+    margin-left: 250px;
     display: flex;
     flex-direction: column;
-    max-width: 30vw;
-}
-main div form input{
-    /*margin: 10px auto;*/
-}
-main div form input[type='text']{
-    margin-left: 22px;
-}
-main div form input[name='repeat']{
-    margin-left: 7px;
-}
-footer{
-    margin-top: 15px;
-    min-height: 8vh;
-    max-width: 95vw;
-    box-shadow: 2px 1px 2px 2px black;
-    border: 1px solid black;
-    display: flex;
-    justify-content: center;
+    flex-wrap: nowrap;
     align-items: center;
+    justify-content: center;
 }
-footer a{
+
+/* --------------------- */
+
+footer {
+    height: 50px;
+    background-color: #586F7C;
+    color: #F4F4F9;
+    text-align: center;
+}
+
+footer #copyright {
+    line-height: 50px;
     text-decoration: none;
-    color: black;
+    color: white;
 }
+
+/* --------------------- */
