@@ -8,12 +8,12 @@ form[action="/admin/user/add"] {
 form[action="/admin/user/add"] input {
     padding: 10px 14px;
     margin-bottom: 15px;
+    border-radius: 3px;
 }
 
 form[action="/admin/user/add"] input[type="submit"] {
     background-color: #B8DBD9;
     cursor: pointer;
-    border-radius: 3px;
 }
 
 form[action="/admin/user/add"] input:last-of-type {
@@ -24,5 +24,8 @@ form[action="/admin/user/add"] input[type="submit"]:hover {
     background-color: #2F4550;
     color: white;
     cursor: pointer;
-    border-radius: 3px;
+}
+
+form[action="/admin/user/add"] input[placeholder] {
+    border: 1px solid #586F7C;
 }
