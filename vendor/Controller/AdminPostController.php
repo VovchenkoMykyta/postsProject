@@ -52,8 +52,6 @@ final class AdminPostController extends FrontendController {
 
         $userId = intval($_SESSION["user_id"]);
 
-        
-
         $errors = PostDatabase::addPost($postName, $postContent, $userId);
 
         if ($errors)  $_SESSION["errors"] = $errors;
