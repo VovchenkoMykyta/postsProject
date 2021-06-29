@@ -17,7 +17,13 @@
 </head>
 <body>
 <header>
-    <span><h1>Admin Panel</h1></span>
+    <h1>Admin Panel</h1>
+    <ul id="links">
+        <li><a href="/admin/news/list">News List</a></li>
+        <li><a href="/admin/news/add">News Add</a></li>
+        <li><a href="/admin/user/list">Users List</a></li>
+        <li><a href="/admin/user/add">User Add</a></li>
+    </ul>
     <?php if ( !is_null($userId) ) : ?>
         <h2>User: <?= \MySQL\UserDatabase::getUserById($userId)["login"] ?> </h2>
         <form action="/logout" method="POST"><input type="submit" value="logout"></form>

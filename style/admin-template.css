@@ -4,13 +4,27 @@ body{
     margin: 5px auto;
 }
 header{
-    border: 1px solid black;
-    box-shadow: 2px 1px 2px 2px black;
-    text-align: center;
+    background-color: #bec3ea;
+    height: 50px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-content: center;
+    justify-content: space-around;
+    align-items: center;
 }
 header form{
     margin-bottom: 10px;
 }
+
+#links {
+    list-style: none;
+}
+
+#links li {
+    display: inline-block;
+}
+
 main{
     margin-top: 12px;
     min-height: 72vh;
