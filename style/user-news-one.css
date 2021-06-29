@@ -1,0 +1,7 @@
+p{
+    margin: 30px;
+    line-height: 2;
+}
+p#name{
+    font-weight: 800;
+}

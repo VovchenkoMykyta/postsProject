@@ -1,5 +1,5 @@
 <?php $post = \MySQL\PostDatabase::getPostById($this->data["id"]) ?>
 
-<p>PostName:<?= $post["name"] ?></p>
+<p id="name"><?= $post["name"] ?></p>
 
-<p>PostName:<?= $post["content"] ?></p>
+<p id="content"><?= $post["content"] ?></p>
