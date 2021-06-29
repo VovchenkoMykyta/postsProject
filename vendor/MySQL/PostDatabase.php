@@ -42,7 +42,7 @@ final class PostDatabase extends Database {
                 "name"          => $name,
                 "content"       => $content,
                 "creation_date" => date("Y-m-d H:i:s"),
-                "author_id"     => $authorId
+                "user_id"     => $authorId
             ]
         );
 
