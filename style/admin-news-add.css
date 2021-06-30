@@ -1,13 +1,33 @@
-main{
+form[action="/admin/news/add"] {
+    min-width: 500px;
     display: flex;
     flex-direction: column;
+    align-items: stretch;
+    margin-left: -250px;
 }
-main form{
-    display: flex;
-    flex-direction: column;
-    max-width: 50vw;
-    margin: 20px auto;
+
+form[action="/admin/news/add"] input[type="text"],
+form[action="/admin/news/add"] textarea {
+    margin-bottom: 15px;
+    border: 1px solid #586F7C;
 }
-main form input{
-    margin: 10px;
+
+form[action="/admin/news/add"] input,
+form[action="/admin/news/add"] textarea {
+    padding: 10px 14px;
+    border-radius: 3px;
+}
+
+form[action="/admin/news/add"] input[type="submit"] {
+    background-color: #B8DBD9;
+}
+
+form[action="/admin/news/add"] input[type="submit"]:hover {
+    background-color: #2F4550;
+    color: white;
+}
+
+form[action="/admin/news/add"] textarea {
+    height: 250px;
+    resize: vertical;
 }

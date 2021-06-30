@@ -1,10 +1,5 @@
 <form action="/admin/news/add" method="POST">
-    <label>New name
-        <input type="text" name="name">
-    </label>
-    <label>Add content
-        <textarea name="content"></textarea>
-    </label>
-
-    <input type="submit" value="ADD POST">
+    <input type="text" name="name" placeholder="Caption">
+    <textarea name="content" placeholder="Content"></textarea>
+    <input type="submit" value="Add post">
 </form>
