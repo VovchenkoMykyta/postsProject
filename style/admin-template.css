@@ -128,6 +128,7 @@ main{
     flex-wrap: nowrap;
     align-items: center;
     justify-content: center;
+    padding: 25px;
 }
 
 /* --------------------- */
