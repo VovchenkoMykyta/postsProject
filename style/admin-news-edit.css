@@ -1,21 +1,33 @@
-main form{
+form[action="/admin/news/edit"] {
+    min-width: 500px;
     display: flex;
     flex-direction: column;
-    max-width: 40vw;
-    margin: 20vh auto;
+    align-items: stretch;
+    margin-left: -250px;
 }
-main form input{
-    margin-top: 20px;
-    margin-bottom: 20px;
+
+form[action="/admin/news/edit"] input[type="text"],
+form[action="/admin/news/edit"] textarea {
+    margin-bottom: 15px;
+    border: 1px solid #586F7C;
 }
-main form input[type=text]{
-    line-height: 2;
+
+form[action="/admin/news/edit"] input,
+form[action="/admin/news/edit"] textarea {
+    padding: 10px 14px;
+    border-radius: 3px;
 }
-main form input[type=submit]{
-    max-width: 11vw;
+
+form[action="/admin/news/edit"] input[type="submit"] {
+    background-color: #B8DBD9;
 }
-main form textarea{
-    max-width: 40vw;
-    min-width: 39vw;
-    min-height: 20vh;
+
+form[action="/admin/news/edit"] input[type="submit"]:hover {
+    background-color: #2F4550;
+    color: white;
+}
+
+form[action="/admin/news/edit"] textarea {
+    height: 250px;
+    resize: vertical;
 }
