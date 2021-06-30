@@ -3,6 +3,7 @@ form[action="/admin/user/add"] {
     flex-direction: column;
     justify-content: center;
     width: 250px;
+    margin-left: -250px;
 }
 
 form[action="/admin/user/add"] input {
