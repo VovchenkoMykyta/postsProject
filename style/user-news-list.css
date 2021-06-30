@@ -1,19 +1,124 @@
-div#news-list{
+#news-list {
+    width: 720px;
+}
+
+.caption {
+    font-size: 1.2em;
+    margin-bottom: 15px;
+}
+
+.caption a {
+    color: #2F4550;
+    text-decoration: none;
+}
+
+.caption a:hover {
+    text-decoration: underline;
+}
+
+#news-list p {
+    margin-bottom: 15px;
+}
+
+.credentials {
+    display:flex;
+    justify-content: space-between;
+    margin: 25px 0;
+    color: #586F7C;
+}
+
+.author {
+    font-style: italic;
+}
+
+.date {
+    /* float: right; */
+}
+
+.news {
+    margin-bottom: 25px;
+    border-bottom: 1px solid #2F4550;
+}
+
+#news-list .news:last-of-type {
+    border-bottom: none;
+}
+
+/* ------------------ */
+
+#pagination {
+    margin-top: 50px;
+    max-width: 720px;
+    text-align: center;
+    line-height: 30px;
     display: flex;
-    flex-direction: column;
-    max-width: 70vw;
-    min-height: 7vh;
-    margin: 10px auto;
+    cursor: default;
+    user-select: none;
 }
-div#news-list div{
-    margin-left: 15px;
+
+#pagination > * {
+    margin-right: 15px;
 }
-div#news-list div a{
-    font-size: 18px;
+
+#pagination *:last-child {
+    margin-right: 0;
+}
+
+#pagination>div {
+    border-radius: 3px;
+}
+
+#pagination .page {
+    width: 30px;
+    height: 30px;
+}
+
+#pagination #back,
+#pagination #forward {
+    border: 1px solid #2F4550;
+    height: 30px;
+    width: 30px;
+}
+
+#pagination #back.active:hover,
+#pagination #forward.active:hover {
+    background-color: #2F4550;
+    height: 30px;
+    width: 30px;
+    color: white;
+}
+
+#pagination #back.disable,
+#pagination #forward.disable {
+    background-color: #B8DBD9;
+    border: none;
+    height: 30px;
+    width: 30px;
+}
+
+#pagination a {
+    display: block;
+    width: 30px;
+    height: 30px;
+}
+
+#pagination a {
     text-decoration: none;
-    color: black;
+    color: inherit;
 }
-div#news-list a{
-    text-decoration: none;
-    color: black;
+
+#pagination .page.disable {
+    background-color: #B8DBD9;
+    cursor: default;
+}
+
+#pagination .page.active {
+    border: 1px solid #2F4550;
+    cursor: pointer;
+}
+
+#pagination .page.active:hover {
+    background-color: #2F4550;
+    color: white;
+    border: none;
 }
