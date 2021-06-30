@@ -1,20 +1,26 @@
-form{
+form[action="/login"] {
+    margin-left: -250px;
     display: flex;
     flex-direction: column;
-    max-width: 50vw;
-    margin: 25vh auto;
+    width: 250px;
 }
-form label{
-    margin: 0 auto;
+
+form[action="/login"] input {
+    padding: 10px 14px;
+    margin-bottom: 15px;
+    border-radius: 3px;
 }
-form input{
-    margin-top: 20px;
-    margin-right: 20px;
+
+form[action="/login"] input[placeholder] {
+    border: 1px solid #586F7C;
 }
-form input[type=text]{
-    margin-left: 24px;
+
+form[action="/login"] input[type="submit"] {
+    background-color: #B8DBD9;
 }
-form input[type=submit]{
-    max-width: 10vw;
-    margin: 17px auto;
+
+form[action="/login"] input[type="submit"]:hover {
+    background-color: #2F4550;
+    color: white;
+    cursor: pointer;
 }
