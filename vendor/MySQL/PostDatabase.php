@@ -17,7 +17,7 @@ final class PostDatabase extends Database {
      * Amount of characters in small content of the post.
      * @var int $smallContentSize
      */
-    static private $smallContentSize = 100;
+    static private $smallContentSize = 250;
 
     /**
      * Adding a new post to database.
@@ -191,11 +191,22 @@ final class PostDatabase extends Database {
 
         if ( strlen($content) < 3 ) return "...";
 
-        $content = substr($content, 0, self::$smallContentSize-3);
+        $content = mb_substr($content, 0, self::$smallContentSize-3);
 
         $content .= "...";
 
         return $content;
+
+    }
+
+    /**
+     * Get total amount of the posts.
+     * @return int Returns number of posts available.
+     */
+    static public function getAllPostsAmount () {
+
+        $amount = static::getPostAll();
+        return count($amount);
 
     }
 

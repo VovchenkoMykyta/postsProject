@@ -27,8 +27,8 @@ class AdminGetController extends FrontendController {
         session_start();
         if (!isset($_SESSION["login"]) || $_SESSION["login"] !== "yes") static::redirect("login");
 
-        $actionArea = $pathArray[1] ?? NULL;
-        $actionType = $pathArray[2] ?? NULL;
+        $actionArea = $pathArray[1] ?? "news";
+        $actionType = $pathArray[2] ?? "list";
 
         if (!$actionArea || !$actionType) static::redirectToErrorPage();
         

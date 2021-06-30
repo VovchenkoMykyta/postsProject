@@ -248,7 +248,7 @@ abstract class Database {
         if (!self::$connectionStatus) return [];
 
         $tableName = addslashes($tableName);
-        $offset = (int)addslashes($offset);
+        $offset = (int)addslashes($offset)-1;
         $maxRows = (int)addslashes($maxRows);
 
         $query = "SELECT * FROM `$tableName` ORDER BY `$orderField` $orderDirection LIMIT $maxRows OFFSET $offset;";
