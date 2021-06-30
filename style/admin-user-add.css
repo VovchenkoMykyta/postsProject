@@ -13,7 +13,6 @@ form[action="/admin/user/add"] input {
 
 form[action="/admin/user/add"] input[type="submit"] {
     background-color: #B8DBD9;
-    cursor: pointer;
 }
 
 form[action="/admin/user/add"] input:last-of-type {
@@ -23,7 +22,6 @@ form[action="/admin/user/add"] input:last-of-type {
 form[action="/admin/user/add"] input[type="submit"]:hover {
     background-color: #2F4550;
     color: white;
-    cursor: pointer;
 }
 
 form[action="/admin/user/add"] input[placeholder] {
