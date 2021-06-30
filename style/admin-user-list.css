@@ -1,11 +1,56 @@
-table{
-    margin: 12px auto;
-    border-collapse: collapse;
+#table-wrapper {
+    background-color: white;
+    padding: 30px 50px;
+    border-radius: 3px;
+    border: 1px solid #2F4550;
+    margin-left: -250px;
     text-align: center;
-    max-width: 80vw;
 }
-table td{
-    min-width: 10vw;
-    min-height: 3vh;
-    border: 1px solid black;
+
+table {
+    border-collapse: collapse;
+}
+
+table thead {
+    color: #586F7C;
+}
+
+table td {
+    padding: 6px 14px;
+}
+
+table tr{ 
+    height: 30px;
+    border-bottom: 1px solid #2F4550;
+}
+
+table tbody tr:last-of-type {
+    border-bottom: none;
+}
+
+table .user-id {
+    width: 150px;
+}
+
+table .login {
+    width: 250px;
+}
+
+
+table .user-action {
+    width: 200px;
+}
+
+table .user-action form input {
+    color: black;
+    text-decoration: none;
+    padding: 6px 14px;
+    font-size: 14px;
+    background-color: #F4F4F9;
+    border: 1px solid #2F4550;
+    border-radius: 3px;
+}
+
+table .user-action form input:hover {
+    background-color: #B8DBD9;
 }
