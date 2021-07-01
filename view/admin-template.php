@@ -43,6 +43,7 @@
             <li><a href="/admin/news/add">News Add</a></li>
             <li><a href="/admin/user/list">Users List</a></li>
             <li><a href="/admin/user/add">User Add</a></li>
+            <li><a href="/">Main Page</a></li>
             </ul>
         </nav>
     <?php endif;?>
