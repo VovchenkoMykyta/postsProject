@@ -1,0 +1,23 @@
+#news-item {
+    width: 720px;
+}
+
+.caption {
+    font-size: 1.2em;
+    margin-bottom: 15px;
+}
+
+#news-item p {
+    margin-bottom: 15px;
+}
+
+.credentials {
+    display:flex;
+    justify-content: space-between;
+    margin: 25px 0;
+    color: #586F7C;
+}
+
+.author {
+    font-style: italic;
+}
