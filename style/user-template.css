@@ -18,13 +18,41 @@ body {
 
 header {
     height: 50px;
-    text-align: center;
+    /* text-align: center; */
     border-bottom: 1px solid #2F4550;
 }
 
 header h1 {
-    line-height: 50px;
+    margin: 0 auto;
+    text-align: center;
 }
+
+header h1 a,
+header #admin a {
+    line-height: 50px;
+    text-decoration: none;
+    color: black;
+}
+
+header #admin a {
+    font-family: sans-serif;
+    padding: 6px 14px;
+    background-color: #F4F4F9;
+    border: 1px solid #2F4550;
+    border-radius: 3px;
+}
+
+header #admin a:hover {
+    background-color: #B8DBD9;
+}
+
+header #admin {
+    position: absolute;
+    right: 25px;
+    top: 0;
+}
+
+/* --------------------- */
 
 main {
     padding: 50px;

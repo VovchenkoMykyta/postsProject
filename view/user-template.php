@@ -9,7 +9,8 @@
 <body>
 
     <header>
-        <h1>D-NEWS</h1>
+        <h1><a href="/">D-NEWS</a></h1>
+        <div id="admin"><a href="/admin">admin</a></div>
     </header>
 
     <main>
